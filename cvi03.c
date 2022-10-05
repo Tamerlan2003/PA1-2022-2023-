@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 int main() {
-    int HourOne, HourTwo, MinuteOne, MinuteTwo;
-    int SekundOne, SekundTwo, mSekOne, mSekTwo;
+    int HourOne = 0, HourTwo = 0, MinuteOne = 0, MinuteTwo = 0;
+    int SekundOne =0, SekundTwo =0, mSekOne =0, mSekTwo =0;
 
     printf("Zadejte cas t1:\n");
     if (scanf(" %d : %d : %d , %d", &HourOne, &MinuteOne, &SekundOne, &mSekOne) != 4 || (HourOne >= 24) ||
@@ -43,14 +43,13 @@ int main() {
     firstconvertedtime = (HourOne * 3600000) + (MinuteOne * 60000) + (SekundOne * 1000) + mSekOne;
     secondconvertedtime = (HourTwo * 3600000) + (MinuteTwo * 60000) + (SekundTwo * 1000) + mSekTwo;
 
-    int delTime;
+    int delTime = 0;
     delTime = secondconvertedtime - firstconvertedtime;
 
     int hour = 0;
     int minute = 0;
     int Sekunda =0;
     int mSek = 0;
-    int i, j;
     while (delTime>= 3600000)
     {
         hour = delTime/3600000;
