@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include "math.h"
+
+int main(){
+    double KreditUrok, DebitUrok;
+    int day, transaction = 1;
+    printf("Zadejte kreditni urok [%%]:\n");
+    if(scanf(" %lf", &KreditUrok)!=1 || (KreditUrok < 0)){
+        printf("Nespravny vstup.\n");
+        return 1;
+    }
+    printf("Zadejte debetni urok [%%]:\n");
+    if(scanf(" %lf", &DebitUrok)!=1 || (KreditUrok < 0)){
+        printf("Nespravny vstup.\n");
+        return 1;
+    }
+
+
+    int mDay = -1;
+    double balance = 0;
+    int start = 0;
+    printf("Zadejte transakce:\n");
+    while(transaction != 0){
+        if(scanf(" %d, %d", &day, &transaction)!=2 || day <= mDay){
+            printf("Nespravny vstup.\n");
+            return 1;
+        }
+
+        if((balance > 0) && (start != 0)){
+            for(int i = mDay; i < day; ++i)
+            {
+                double change = floorf((balance * (KreditUrok/100)) * 100);
+                change = change / 100;
+                balance = balance + change;
+
+
+            }
+        }
+
+        if((balance < 0) && (start != 0)){
+            for (int i = mDay; i < day ; ++i) {
+                double change = ceil(((balance * (DebitUrok/100)) * 100));
+                change = change / 100;
+                balance = balance + change;
+
+            }
+
+        }
+        balance = balance + transaction;
+        ++start;
+        mDay = day;
+
+    }
+    printf("Zustatek: %0.2f\n", balance);
+}
